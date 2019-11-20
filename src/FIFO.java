@@ -11,6 +11,8 @@ public class FIFO {
         int pageFaults = 0;
         int pageSize = 0;
         String referenceString = "";
+        HashSet<Integer> set = new HashSet<>();
+        ArrayList<Integer> memory = new ArrayList<>(pageSize);
         try {
             Scanner input = new Scanner(file);
             while(input.hasNextLine()) {
@@ -21,19 +23,20 @@ public class FIFO {
                 referenceString = input.nextLine();
 //                System.out.println(referenceString);
             }
+            input.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //Iterate through entire string, choosing each character one by one
-        HashSet<Integer> set = new HashSet<>();
-        ArrayList<Integer> memory = new ArrayList<>(pageSize);
         int oldestInsertedIndex = 0;
         for(int i = 0; i < referenceString.length(); i++) {
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
+            System.out.println("-------------------------------------------- insert: " + currentPage);
             if(set.contains(currentPage)) {
                 pageFaults++;
                 System.out.println("PAGE FAULT");
+                System.out.println("State: " + memory.toString());
             } else {
                 if(set.size() == pageSize) {
 
@@ -52,12 +55,12 @@ public class FIFO {
                     set.add(currentPage);
                     memory.add(currentPage);
                 }
-                System.out.println("SET: " + set.toString());
-                System.out.println("ArrayList: " + memory.toString());
+                //System.out.println("SET: " + set.toString());
+                System.out.println("State: " + memory.toString());
             }
 
         }
-        System.out.println("Page faults: " + pageFaults);
+        //System.out.println("Page faults: " + pageFaults);
         return pageFaults;
     }
 }

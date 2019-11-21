@@ -32,8 +32,8 @@ public class Main {
     public static void mainExecute() {
         for(int i = 3; i < 7; i++) {
             File file = new File("test" + i + ".txt");
-            fifo.execute(file);
-            lru.execute(file);
+            //fifo.execute(file);
+            //lru.execute(file);
             oa.execute(file);
         }
     }

@@ -3,16 +3,14 @@ import java.util.*;
 
 public class FIFO {
 
-    public FIFO() {
-
-    }
+    private int pageFaults = 0;
+    private int pageSize = 0;
+    private String referenceString = "";
+    private HashSet<Integer> set = new HashSet<>();
+    private ArrayList<Integer> memory = new ArrayList<>(pageSize);
 
     public int execute(File file) {
-        int pageFaults = 0;
-        int pageSize = 0;
-        String referenceString = "";
-        HashSet<Integer> set = new HashSet<>();
-        ArrayList<Integer> memory = new ArrayList<>(pageSize);
+
         try {
             Scanner input = new Scanner(file);
             while(input.hasNextLine()) {

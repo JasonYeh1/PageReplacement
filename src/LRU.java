@@ -2,13 +2,16 @@ import java.io.File;
 import java.util.*;
 
 public class LRU {
+
+    private int pageFaults = 0;
+    private int pageSize = 0;
+    private String referenceString = "";
+    private LinkedList<Integer> memory = new LinkedList<>();
+    private HashSet<Integer> set = new HashSet<>();
+    private LinkedList<Integer> state = new LinkedList<>();
+
     public int execute(File file) {
-        int pageFaults = 0;
-        int pageSize = 0;
-        String referenceString = "";
-        LinkedList<Integer> memory = new LinkedList<>();
-        HashSet<Integer> set = new HashSet<>();
-        LinkedList<Integer> state = new LinkedList<>();
+
 
         try {
             Scanner input = new Scanner(file);

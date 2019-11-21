@@ -33,17 +33,19 @@ public class LRU {
 
         for(int i = 0; i < referenceString.length(); i++) {
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
-            System.out.println("-------------------------------------------- insert: " + currentPage);
             if(set.contains(currentPage)) {
                 pageFaults++;
                 //Update LinkedList position by appending the currentPage to the end and removing it from the LinkedList
                 memory.addLast(currentPage);
                 Integer intObj = Integer.valueOf(currentPage);
                 memory.remove(intObj);
-                System.out.println("PAGE FAULT");
                 //System.out.println("SET: " + set.toString());
                 //System.out.println("LRU: " + memory.toString());
-                System.out.println("State: " + state.toString());
+                System.out.print(currentPage + " " + state.toString());
+                for(int s = 0; s < pageSize - state.size(); s++) {
+                    System.out.print("[ ]");
+                }
+                System.out.println(" PAGE FAULT");
             } else {
                 if(set.size() == pageSize) {
                     //LRU algorithm to choose correct memory to replace
@@ -59,7 +61,11 @@ public class LRU {
                 }
                 //System.out.println("SET: " + set.toString());
                 //System.out.println("LRU: " + memory.toString());
-                System.out.println("State: " + state.toString());
+                System.out.print(currentPage + " "  + state.toString());
+                for(int s = 0; s < pageSize - state.size(); s++) {
+                    System.out.print("[ ]");
+                }
+                System.out.println("");
             }
 
         }

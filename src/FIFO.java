@@ -30,11 +30,13 @@ public class FIFO {
         int oldestInsertedIndex = 0;
         for(int i = 0; i < referenceString.length(); i++) {
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
-            System.out.println("-------------------------------------------- insert: " + currentPage);
             if(set.contains(currentPage)) {
                 pageFaults++;
-                System.out.println("PAGE FAULT");
-                System.out.println("State: " + memory.toString());
+                System.out.print(currentPage + " " + memory.toString());
+                for(int s = 0; s < pageSize - memory.size(); s++) {
+                    System.out.print("[ ]");
+                }
+                System.out.println(" PAGE FAULT");
             } else {
                 if(set.size() == pageSize) {
 
@@ -54,7 +56,11 @@ public class FIFO {
                     memory.add(currentPage);
                 }
                 //System.out.println("SET: " + set.toString());
-                System.out.println("State: " + memory.toString());
+                System.out.print(currentPage + " " + memory.toString());
+                for(int s = 0; s < pageSize - memory.size(); s++) {
+                    System.out.print("[ ]");
+                }
+                System.out.println("");
             }
 
         }

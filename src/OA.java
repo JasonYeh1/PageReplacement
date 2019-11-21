@@ -31,16 +31,18 @@ public class OA {
         for(int i = 0; i < referenceString.length(); i++) {
 
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
-            System.out.println("-------------------------------------------- insert: " + currentPage);
             if(set.contains(currentPage)) {
                 pageFaults++;
-                System.out.println("PAGE FAULT");
+                System.out.print(currentPage + " " + memory.toString());
+                for(int s = 0; s < pageSize - memory.size(); s++) {
+                    System.out.print("[ ]");
+                }
+                System.out.println(" PAGE FAULT");
             } else {
                 if(set.size() == pageSize) {
                     int pageToReplace = forsee(i, referenceString);
                     set.remove(pageToReplace);
                     set.add(currentPage);
-                    System.out.println("pageToReplace: " + pageToReplace);
                     int indexToReplace = map.get(pageToReplace);
                     map.remove(pageToReplace);
                     memory.set(indexToReplace, currentPage);
@@ -51,10 +53,15 @@ public class OA {
                     set.add(currentPage);
                     map.put(currentPage, memory.indexOf(currentPage));
                 }
+                System.out.print(currentPage + " " + memory.toString());
+                for(int s = 0; s < pageSize - memory.size(); s++) {
+                    System.out.print("[ ]");
+                }
+                System.out.println("");
             }
-            System.out.println("Map: " + map.toString());
-            System.out.println("Set: " + set.toString());
-            System.out.println("ArrayList: " + memory.toString());
+            //System.out.println("Map: " + map.toString());
+            //System.out.println("Set: " + set.toString());
+
         }
         return pageFaults;
     }

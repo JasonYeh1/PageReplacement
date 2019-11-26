@@ -1,15 +1,21 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Main class to allow entry into the program
+ */
 public class Main {
 
+    //Class ArrayLists to hold the trial averages for each algorithm
     static ArrayList<Integer> fifoTrials = new ArrayList<>();
     static ArrayList<Integer> lruTrials = new ArrayList<>();
     static ArrayList<Integer> oaTrials = new ArrayList<>();
 
-    final static double TRIALS = 50;
+    //Double to represent the number of trials to be held
+    final static double TRIALS = 1;
     public static void main(String args[]) {
 
+        //Loop to run through trials
         for(int k = 0; k < TRIALS; k++) {
             //Generate reference string of size 30
             String referenceString = "";
@@ -56,6 +62,7 @@ public class Main {
         }
     }
 
+    //Print the results of each algorithm
     private static void printResults() {
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("");
@@ -104,4 +111,8 @@ public class Main {
         System.out.println("OA " + TRIALS + " page fault average for page frame size 5: " + oaSum5/TRIALS);
         System.out.println("OA " + TRIALS + " page fault average for page frame size 6: " + oaSum6/TRIALS);
     }
+
+
+
+
 }

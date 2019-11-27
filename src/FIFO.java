@@ -40,16 +40,15 @@ public class FIFO {
         //Iterate through entire string, choosing each character one by one
         for(int i = 0; i < referenceString.length(); i++) {
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
-            //Checks for page faults
             if(set.contains(currentPage)) {
-                pageFaults++;
                 System.out.print(currentPage + " " + memory.toString());
                 for(int s = 0; s < pageSize - memory.size(); s++) {
                     System.out.print("[ ]");
                 }
                 System.out.println(" PAGE FAULT");
-            //If no page faults then insert the page into the frame
+            //If page faults then insert the page into the frame
             } else {
+                pageFaults++;
                 //If the memory is full, we need to choose the oldest inserted item to leave
                 if(set.size() == pageSize) {
                     set.remove(memory.get(oldestInsertedIndex));                //remove the page from the set

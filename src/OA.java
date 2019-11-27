@@ -40,17 +40,16 @@ public class OA {
         //Iterate through entire string, choosing each character one by one
         for(int i = 0; i < referenceString.length(); i++) {
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
-            //Checks for page faults
             if(set.contains(currentPage)) {
-                pageFaults++;
                 System.out.print(currentPage + " " + memory.toString());
                 for(int s = 0; s < pageSize - memory.size(); s++) {
                     System.out.print("[ ]");
                 }
-                System.out.println(" PAGE FAULT");
-            //If no page faults then insert the page into the frame
+                System.out.println("");
+            //If page faults then insert the page into the frame
             } else {
                 //If the memory is full, we need to choose the oldest inserted item to leave
+                pageFaults++;
                 if(set.size() == pageSize) {
                     int pageToReplace = forsee(i, referenceString);                 //Call the forsee method to get the page to replace
                     set.remove(pageToReplace);                                      //Remove the page to replace from the set
@@ -69,7 +68,7 @@ public class OA {
                 for(int s = 0; s < pageSize - memory.size(); s++) {
                     System.out.print("[ ]");
                 }
-                System.out.println("");
+                System.out.println(" PAGE FAULT");
             }
             //System.out.println("Map: " + map.toString());
             //System.out.println("Set: " + set.toString());

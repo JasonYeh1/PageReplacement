@@ -43,9 +43,8 @@ public class LRU {
         //Iterate through entire string, choosing each character one by one
         for(int i = 0; i < referenceString.length(); i++) {
             int currentPage = Character.getNumericValue(referenceString.charAt(i));
-            //Checks for page faults
             if(set.contains(currentPage)) {
-                pageFaults++;
+
                 //Update LinkedList position by appending the currentPage to the end and removing it from the LinkedList
                 memory.addLast(currentPage);
                 Integer intObj = Integer.valueOf(currentPage);
@@ -57,10 +56,10 @@ public class LRU {
                     System.out.print("[ ]");
                 }
                 System.out.println(" PAGE FAULT");
-            //If no page faults then insert the page into the frame
+            //If page faults then insert the page into the frame
             } else {
+                pageFaults++;
                 //If the memory is full, we need to choose the oldest inserted item to leave
-
                 if(set.size() == pageSize) {
                     //LRU algorithm to choose correct memory to replace
                     set.remove(memory.getFirst());                                  //Remove the least recently used page

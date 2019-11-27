@@ -12,7 +12,7 @@ public class Main {
     static ArrayList<Integer> oaTrials = new ArrayList<>();
 
     //Double to represent the number of trials to be held
-    final static double TRIALS = 1;
+    final static double TRIALS = 50;
     public static void main(String args[]) {
 
         //Loop to run through trials
